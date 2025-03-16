@@ -9,7 +9,7 @@ The project is done in 4 phases:
 ______________________________________
 Project Specification:
   1.	Microcontroller: ATMega328P, compound with a By-Pass Capacitors
-  2.	Power Circuitry: Using LM7805 (Input: 10V  Output: 5V)
+  2.	Power Circuitry: Using LM7805 (Input: 10V -> Output: 5V)
   3.	Crystal: XTAL, 16MHz with 2x22pF Capacitors, one on each Pin
   4.	One ON/OFF switch
   5.	One Push button to reset
