@@ -1,7 +1,7 @@
 # Coding
 ## The ideal code must have these criteria and functions:
   1.	System ON/OFF Control:
-     The system operates normally when the on/off switch is turned on. If it is turned off, the system remains powered but stops operating. During this time, it waits in a low-power mode until the switch is turned back on. This ensures energy efficiency and readiness to resume operation without a full restart.
+    -The system operates normally when the on/off switch is turned on. If it is turned off, the system remains powered but stops operating. During this time, it waits in a low-power mode until the switch is turned back on. This ensures energy efficiency and readiness to resume operation without a full restart.
   3.	Frequency Reporting to Virtual Terminal:
      •	The frequency of the sound is reported to the Proteus virtual terminal. The format of the message is: “Frequency is x Hz”, where x is the current frequency. The values are sent at regular intervals of 2 seconds to provide real-time feedback.
   4.	Frequency Control via Potentiometer:
