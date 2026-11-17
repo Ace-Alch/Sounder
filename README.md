@@ -1,21 +1,81 @@
-# Sounder
-Designing + Fabrication of a Sounder using Proteus 
-_________________________________________________________________________
-The project is done in 4 phases:
-1. Schematic Design
-2. PCB Design
-3. Coding & Simulation
-4. Fabrication
-______________________________________
-Project Specification:
-  1.	Microcontroller: ATMega328P, compound with a By-Pass Capacitors
-  2.	Power Circuitry: Using LM7805 (Input: 10V -> Output: 5V)
-  3.	Crystal: XTAL, 16MHz with 2x22pF Capacitors, one on each Pin
-  4.	One ON/OFF switch
-  5.	One Push button to reset
-  6.	Sounder to make the desired frequency
-  7.	LED to imitate the sounder frequency using PWM
-  8.	Potentiometer to change the frequency
-  9.	One 2x3 ISP connector to program the AVR, since I wanted to make the real PCB and board.
-  10.	Terminal to print the frequency and take the user's wanted frequency.
+<div align="center">
+<img src="portfolio-assets/cover.svg" width="100%" alt="Sounder project cover">
 
+# Sounder
+
+**Generate a variable-frequency signal with an ATmega328P circuit and firmware.**
+
+ATmega328P � AVR C � Proteus � PCB
+
+[Overview](#overview) � [Design](portfolio/DESIGN.md) � [Setup](portfolio/SETUP.md) � [Validation](portfolio/VALIDATION.md) � [Evidence](portfolio/EVIDENCE.md)
+</div>
+
+## Overview
+
+| Item | Record |
+| :-- | :-- |
+| Project type | Fabricated prototype |
+| Field | Engineering |
+| Material in this package | Existing repository inspected |
+| Documentation review | 17 November 2026 |
+
+## Scope
+
+Generate a variable-frequency signal with an ATmega328P circuit and firmware. The documentation separates the stated project scope, inspected artifacts and future work. A listed feature is not a new test result.
+
+### Main elements
+
+- Potentiometer
+- ADC
+- Timer1
+- Sound output
+- UART
+
+## Start here
+
+1. Read the [design record](portfolio/DESIGN.md) for the system elements and boundaries.
+2. Follow the [setup record](portfolio/SETUP.md) for available entry points.
+3. Use the [validation plan](portfolio/VALIDATION.md) to record reproducible results.
+4. Check the [evidence register](portfolio/EVIDENCE.md) before reusing claims.
+
+## Technical limits
+
+The source requests 50�1000 Hz and defaults to 440 Hz. Timer1 uses no prescaler and a 16-bit compare register. At 16 MHz, a 50 Hz target requires 159999, which exceeds 65535. Thus the full requested range is not established by this implementation. Verify the output with a scope before claiming the range.
+
+## Project preview
+
+![Project artifact](Code%20%26%20Sim/Simulation/100%25.png)
+
+This image is an existing repository artifact. It is not evidence of a new test.
+
+## Available material
+
+| Path | Type |
+| :-- | :-- |
+| [Code & Sim/README.md](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/README.md) | .md |
+| [Code & Sim/Simulation/100%.png](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/100%25.png) | .png |
+| [Code & Sim/Simulation/25%.png](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/25%25.png) | .png |
+| [Code & Sim/Simulation/50%.png](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/50%25.png) | .png |
+| [Code & Sim/Simulation/75%.png](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/75%25.png) | .png |
+| [Code & Sim/Simulation/README.md](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/README.md) | .md |
+| [Code & Sim/Simulation/simulation.mp4](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/simulation.mp4) | .mp4 |
+| [Code & Sim/main.c](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/main.c) | .c |
+| [Fabrication/Back.jpg](https://github.com/Ace-Alch/Sounder/blob/main/Fabrication/Back.jpg) | .jpg |
+| [Fabrication/Components.jpg](https://github.com/Ace-Alch/Sounder/blob/main/Fabrication/Components.jpg) | .jpg |
+| [Fabrication/Front.jpg](https://github.com/Ace-Alch/Sounder/blob/main/Fabrication/Front.jpg) | .jpg |
+| [Fabrication/README.md](https://github.com/Ace-Alch/Sounder/blob/main/Fabrication/README.md) | .md |
+
+See the [complete source inventory](portfolio/SOURCE-INVENTORY.md) for all inspected file paths.
+
+## Next work
+
+- [ ] Editable Proteus and PCB source
+- [ ] BOM and board revision
+- [ ] Oscilloscope measurements
+- [ ] Timer range verification
+
+## Credits and reuse
+
+Project record: Mehdi Moallemkolaei. Specific third-party and course contributions must retain their original notices.
+
+Existing license terms remain in effect. This package does not grant a new license over source code, course material, models or datasets. See [reuse and contribution notes](portfolio/CONTRIBUTIONS.md).
