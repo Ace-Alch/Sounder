@@ -10,6 +10,17 @@ ATmega328P · AVR C · Proteus · PCB
 [Project record](#bench-card) · [Design](portfolio/DESIGN.md) · [Setup](portfolio/SETUP.md) · [Validation](portfolio/VALIDATION.md) · [Evidence](portfolio/EVIDENCE.md)
 </div>
 
+<!-- project-navigation:start -->
+<p align="center">
+  <a href="https://ace-alch.github.io/work/Sounder/"><img alt="View project" src="https://img.shields.io/badge/View%20project-2dd4bf?style=for-the-badge&logo=githubpages&logoColor=white"></a>
+  <a href="portfolio/DESIGN.md"><img alt="Explore design" src="https://img.shields.io/badge/Explore%20design-30363d?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
+  <a href="portfolio/SETUP.md"><img alt="Setup guide" src="https://img.shields.io/badge/Setup%20guide-30363d?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="portfolio/EVIDENCE.md"><img alt="Check evidence" src="https://img.shields.io/badge/Check%20evidence-30363d?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
+</p>
+<p align="center"><strong>Fabricated prototype</strong> &nbsp; / &nbsp; Engineering &nbsp; / &nbsp; <a href="https://ace-alch.github.io/">Mehdi's portfolio</a></p>
+<!-- project-navigation:end -->
+
+
 ## Bench card
 
 | Item | Record |
@@ -48,7 +59,8 @@ The source requests 50–1000 Hz and defaults to 440 Hz. Timer1 uses no prescale
 
 This image is an existing repository artifact. It is not evidence of a new test.
 
-## Available material
+<details>
+<summary><strong>Browse source files and project artifacts</strong></summary>
 
 | Path | Type |
 | :-- | :-- |
@@ -66,6 +78,8 @@ This image is an existing repository artifact. It is not evidence of a new test.
 | [Fabrication/README.md](https://github.com/Ace-Alch/Sounder/blob/main/Fabrication/README.md) | .md |
 
 See the [complete source inventory](portfolio/SOURCE-INVENTORY.md) for all inspected file paths.
+
+</details>
 
 ## Verification backlog
 
