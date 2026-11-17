@@ -1,0 +1,24 @@
+{
+  "slug": "Sounder",
+  "name": "Signal studio",
+  "motif": "sound",
+  "background": "#181810",
+  "ink": "#f2e9c9",
+  "accent": "#e9c750",
+  "layout": "hardware",
+  "canvas": {
+    "width": 3840,
+    "height": 1440,
+    "viewBox": [
+      0,
+      0,
+      1920,
+      720
+    ]
+  },
+  "font": "Arial",
+  "contrast": {
+    "body": 14.68,
+    "accent": 10.83
+  }
+}
