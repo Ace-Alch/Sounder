@@ -1,102 +1,45 @@
-<div align="center">
-<img src="https://raw.githubusercontent.com/Ace-Alch/Ace-Alch.github.io/main/banners/Sounder.webp" width="100%" alt="Sounder — project concept artwork">
-
 # Sounder
 
-**Generate a variable-frequency signal with an ATmega328P circuit and firmware.**
+**A fabricated ATmega328P sound generator with a potentiometer input and a timer-driven square-wave output.**
 
-ATmega328P · AVR C · Proteus · PCB
+[Open the interactive signal bench](https://ace-alch.github.io/apps/exhibits/sounder/) · [Read the firmware](Code%20%26%20Sim/main.c) · [See the simulation](Code%20%26%20Sim/Simulation/simulation.mp4)
 
-[Project record](#bench-card) · [Design](portfolio/DESIGN.md) · [Setup](portfolio/SETUP.md) · [Validation](portfolio/VALIDATION.md) · [Evidence](portfolio/EVIDENCE.md)
-</div>
+<table>
+<tr>
+<td width="55%"><img src="Fabrication/Front.jpg" alt="Front of the fabricated Sounder board"></td>
+<td width="45%"><img src="Fabrication/Back.jpg" alt="Back of the fabricated Sounder board"></td>
+</tr>
+<tr><td><b>Component side</b></td><td><b>Reverse side</b></td></tr>
+</table>
 
-<!-- project-navigation:start -->
-<p align="center">
-  <a href="https://ace-alch.github.io/work/Sounder/"><img alt="View project" src="https://img.shields.io/badge/View%20project-2dd4bf?style=for-the-badge&logo=githubpages&logoColor=white"></a>
-  <a href="portfolio/DESIGN.md"><img alt="Explore design" src="https://img.shields.io/badge/Explore%20design-30363d?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
-  <a href="portfolio/SETUP.md"><img alt="Setup guide" src="https://img.shields.io/badge/Setup%20guide-30363d?style=for-the-badge&logo=github&logoColor=white"></a>
-  <a href="portfolio/EVIDENCE.md"><img alt="Check evidence" src="https://img.shields.io/badge/Check%20evidence-30363d?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
-</p>
-<p align="center"><strong>Fabricated prototype</strong> &nbsp; / &nbsp; Engineering &nbsp; / &nbsp; <a href="https://ace-alch.github.io/">Mehdi's portfolio</a></p>
-<!-- project-navigation:end -->
+## From a turn of the knob to a square wave
 
+The ADC reads the potentiometer. The firmware maps the reading to a requested frequency and writes a compare value to Timer1. The compare interrupt toggles PB2 when the system is active and unpaused. Timer0 controls LED brightness through PWM. The UART handler accepts `+` and `-` requests. The active ADC loop can overwrite that adjustment.
 
-## Bench card
+| Examine | Original material |
+| --- | --- |
+| Circuit | [Schematic design](Schematic%20Design/README.md) |
+| Board | [PCB layout](PCB%20Design/README.md) and [fabrication photos](Fabrication/README.md) |
+| Firmware | [AVR C source](Code%20%26%20Sim/main.c) and [requirements](Code%20%26%20Sim/README.md) |
+| Simulation | [Screenshots and video](Code%20%26%20Sim/Simulation/README.md) |
 
-| Item | Record |
-| :-- | :-- |
-| Project type | Fabricated prototype |
-| Field | Engineering |
-| Material in this package | Existing repository inspected |
-| Documentation review | 17 November 2026 |
+## What the timer actually produces
 
-## The build
+The firmware uses a 16 MHz clock, a prescaler of 1, and a 16-bit compare register. A 50 Hz request requires a compare value of 159,999. The register stores 28,927 after truncation. The corresponding ideal output is **276.55 Hz**. The lowest whole-number request that fits is **123 Hz**.
 
-Generate a variable-frequency signal with an ATmega328P circuit and firmware. The documentation separates the stated project scope, inspected artifacts and future work. A listed feature is not a new test result.
+| Requested | Stored in OCR1A | Ideal output from stored value |
+| ---: | ---: | ---: |
+| 50 Hz | 28,927 | 276.55 Hz |
+| 123 Hz | 65,039 | 123.00 Hz |
+| 440 Hz | 18,180 | 440.02 Hz |
+| 1,000 Hz | 7,999 | 1,000.00 Hz |
 
-### Subsystems
+The table comes from a host test of the original compare routine. The test also checks that the original interrupt toggles PB2 only when the system is active and unpaused. Physical frequency, ISR latency, and board behavior need oscilloscope measurements.
 
-- Potentiometer
-- ADC
-- Timer1
-- Sound output
-- UART
+Run the check from the repository root with Python 3 and a host C compiler:
 
-## Open the bench notes
+```sh
+python tools/check_timer.py
+```
 
-1. Read the [design record](portfolio/DESIGN.md) for the system elements and boundaries.
-2. Follow the [setup record](portfolio/SETUP.md) for available entry points.
-3. Use the [validation plan](portfolio/VALIDATION.md) to record reproducible results.
-4. Check the [evidence register](portfolio/EVIDENCE.md) before reusing claims.
-
-## Technical limits
-
-The source requests 50–1000 Hz and defaults to 440 Hz. Timer1 uses no prescaler and a 16-bit compare register. At 16 MHz, a 50 Hz target requires 159999, which exceeds 65535. Thus the full requested range is not established by this implementation. Verify the output with a scope before claiming the range.
-
-## Project preview
-
-![Project artifact](Code%20%26%20Sim/Simulation/100%25.png)
-
-This image is an existing repository artifact. It is not evidence of a new test.
-
-<details>
-<summary><strong>Browse source files and project artifacts</strong></summary>
-
-| Path | Type |
-| :-- | :-- |
-| [Code & Sim/README.md](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/README.md) | .md |
-| [Code & Sim/Simulation/100%.png](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/100%25.png) | .png |
-| [Code & Sim/Simulation/25%.png](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/25%25.png) | .png |
-| [Code & Sim/Simulation/50%.png](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/50%25.png) | .png |
-| [Code & Sim/Simulation/75%.png](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/75%25.png) | .png |
-| [Code & Sim/Simulation/README.md](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/README.md) | .md |
-| [Code & Sim/Simulation/simulation.mp4](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/Simulation/simulation.mp4) | .mp4 |
-| [Code & Sim/main.c](https://github.com/Ace-Alch/Sounder/blob/main/Code%20%26%20Sim/main.c) | .c |
-| [Fabrication/Back.jpg](https://github.com/Ace-Alch/Sounder/blob/main/Fabrication/Back.jpg) | .jpg |
-| [Fabrication/Components.jpg](https://github.com/Ace-Alch/Sounder/blob/main/Fabrication/Components.jpg) | .jpg |
-| [Fabrication/Front.jpg](https://github.com/Ace-Alch/Sounder/blob/main/Fabrication/Front.jpg) | .jpg |
-| [Fabrication/README.md](https://github.com/Ace-Alch/Sounder/blob/main/Fabrication/README.md) | .md |
-
-See the [complete source inventory](portfolio/SOURCE-INVENTORY.md) for all inspected file paths.
-
-</details>
-
-## Verification backlog
-
-- [ ] Editable Proteus and PCB source
-- [ ] BOM and board revision
-- [ ] Oscilloscope measurements
-- [ ] Timer range verification
-
-## Credits and reuse
-
-Project record: Mehdi Moallemkolaei. Specific third-party and course contributions must retain their original notices.
-
-Existing license terms remain in effect. This package does not grant a new license over source code, course material, models or datasets. See [reuse and contribution notes](portfolio/CONTRIBUTIONS.md).
-
-
----
-
-![Project design system](portfolio-assets/section.svg)
-
-[Visual design notes](portfolio/VISUAL-DESIGN.md) · [Design tokens](portfolio/design-tokens.json)
+[Open the validation notes](portfolio/VALIDATION.md) · [Browse the complete source inventory](portfolio/SOURCE-INVENTORY.md)
